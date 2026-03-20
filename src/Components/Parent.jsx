@@ -24,7 +24,7 @@ export default function Parent() {
             onClick={handleReset}
             className="px-4 py-2 rounded-lg bg-red-500 text-white text-sm font-medium shadow hover:bg-red-600 active:scale-95 transition-all duration-200"
           >
-            Reset
+            Restart
           </button>
         </div>
         <div className="pt-2">{showResult ? <Result /> : <Questions />}</div>

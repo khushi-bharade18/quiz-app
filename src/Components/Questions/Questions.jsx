@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Context from "../../Context/CreateContext";
 
 export default function Questions() {
@@ -8,26 +8,38 @@ export default function Questions() {
     setCurrQue,
     selectedOption,
     setSelectedOption,
-    score,
     setScore,
+    setShowResult,
+    usersAnswer,
+    setUsersAnswer,
   } = useContext(Context);
 
   const question = data[currQue];
 
   function handleNext() {
-    if (selectedOption === question.answer) {
-      setScore((prev) => prev + 1);
-    }
-
-    if (currQue < data.length ) {
+    setUsersAnswer((prev) => [...prev, selectedOption]);
+    if (currQue < data.length - 1) {
       setCurrQue((prev) => prev + 1);
       setSelectedOption(null);
     } else {
-      setScore(true);
+      setShowResult(true);
+    }
+    console.log(usersAnswer);
+    if (selectedOption === question.answer) {
+      setScore((prev) => prev + 1);
     }
   }
   return (
-    <div className=" flex items-center justify-center p-4 rounded-2xl">
+    <div
+      className=" flex items-center justify-center p-4 rounded-2xl"
+      tabIndex={0}
+      autoFocus
+      onKeyDown={(e) => {
+        if (e.key === "Enter" && selectedOption !== null) {
+          handleNext();
+        }
+      }}
+    >
       <div className="w-full max-w-xl bg-white rounded-2xl p-6 space-y-6">
         <p className="text-lg font-semibold text-gray-800 flex justify-between items-center">
           <span>
@@ -48,7 +60,7 @@ export default function Questions() {
                 name="option"
                 onChange={() => setSelectedOption(index)}
                 checked={selectedOption === index}
-                className="accent-indigo-500"
+                className="accent-indigo-500 outline-none"
               />
               <span className="text-gray-700">{option}</span>
             </label>
@@ -64,7 +76,7 @@ export default function Questions() {
             : "bg-indigo-600 hover:bg-indigo-700 active:scale-99"
         }`}
         >
-          Next
+          {currQue === data.length - 1 ? "Submit" : "Next"}
         </button>
       </div>
     </div>

@@ -8,6 +8,7 @@ export default function ContextComp({ children }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  const [usersAnswer, setUsersAnswer] = useState([]);
   return (
     <Context.Provider
       value={{
@@ -20,6 +21,8 @@ export default function ContextComp({ children }) {
         setScore,
         showResult,
         setShowResult,
+        usersAnswer,
+        setUsersAnswer
       }}
     >
       {children}
