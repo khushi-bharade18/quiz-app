@@ -1,12 +1,25 @@
 import React from "react";
-import Parent from "./Components/Parent";
+import { Route, Routes } from "react-router";
 import Form from "./Pages/Form";
+import Quiz from "./Pages/Parent";
+import ProtectedRoute from "./Route/ProtectedRoute";
+import NotFound from "./Components/NotFound";
 
 export default function App() {
   return (
     <div>
-      <Parent />
-      {/* <Form /> */}
+      <Routes>
+        <Route path="/" element={<Form />} />
+        <Route
+          path="/quiz"
+          element={
+            <ProtectedRoute>
+              <Quiz />
+            </ProtectedRoute>
+          }
+        />
+      <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

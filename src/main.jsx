@@ -3,9 +3,12 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import ContextComp from "../src/Context/ContextComp.jsx";
+import { BrowserRouter } from "react-router";
 
 createRoot(document.getElementById("root")).render(
   <ContextComp>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </ContextComp>,
 );

@@ -4,6 +4,9 @@ import { questions } from "../Data/data";
 
 export default function ContextComp({ children }) {
   const data = questions;
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem("user")) || {},
+  );
   const [currQue, setCurrQue] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
@@ -14,6 +17,8 @@ export default function ContextComp({ children }) {
     <Context.Provider
       value={{
         data,
+        userData,
+        setUserData,
         currQue,
         setCurrQue,
         selectedOption,
