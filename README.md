@@ -4,7 +4,7 @@ A responsive and interactive quiz application built using React. The application
 
 ## Live Demo Link
 
-https://test-app-lake-six.vercel.app/
+https://quiz-app-sepia-nu.vercel.app/
 
 ## Features
 
